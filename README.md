@@ -7,6 +7,8 @@
   - [Required Software](#required-software)
 - [General Process](#general-process)
   - [Baseline](#baseline)
+  - [Loadline Calibration tuning](#loadline-calibration-tuning)
+  - [Negative VID offset](#negative-vid-offset)
   - [ASUS](#asus)
   - [MSI](#msi)
   - [GIGABYTE](#gigabyte)
@@ -91,9 +93,15 @@ So if you have a voltage of 1.450 V while you are running a Single Core workload
 By setting a stronger loadline you lower the voltage difference between light load (single core) and heavy load (multi core). 
 
 The goal is to get a small droop of anywhere between 20 and 80 mV (0.02 and 0.08). So the single core workload `[VCORE]` should be optimally max. 0.08 V higher than the multi core workload `[VCORE]`, while in both scenarios the cores are clocked the same. 
-If your core clocks are not the same because you hit a power limit or thermal limit, or because the single core boost clock is higher than the multi core boost clock, you can set your `P-Core Ratio` to be lower (f.a. to "50") for all cores and test the `vdroop` that way. 
+If your core clocks are not the same because you hit a power limit or thermal limit, or because the single core boost clock is higher than the multi core boost clock, you can set your `P-Core Ratio` to be lower (f.a. to 50 or lower) for all cores and test the `vdroop` that way. 
 
 How to set the `Loadline Calibration` and the `Core Ratio` is explained in the motherboard-brand specific settings section of this guide, [the next part](#asus).
+
+Generally: the more cores, the larger the vdroop, so a *stronger* `Loadline Calibration` is needed. The process of setting the `Loadline Calibration` is best done while setting and testing for the optimal `negative VID offset`. The *stronger* the `Loadline Calibration`, the smaller the `vdroop`, therefore the voltage stays higher, therefore a larger `negative VID offset` is possible. 
+
+### Negative VID offset
+What is a `negative VID offset`? If we think back to the [basics](#basics), the `[VID]` is the voltage that the CPU requests. So by applying a `negative VID offset` we lower the `[VID]`, and therefore the `[VCORE]` (the actual voltage the CPU gets from the VRMs).
+F.a. if your `[VID table]` says 1.300 V for 5.5 GHz, and you apply a negativ offset of 0.120, the requested `[VID]` will be 1.300 - 0.120 = 1.180 V.
 
 ### ASUS
 

@@ -6,6 +6,7 @@
   - [Basics](#basics)
   - [Required Software](#required-software)
 - [General Process](#general-process)
+  - [Baseline](#baseline)
   - [ASUS](#asus)
   - [MSI](#msi)
   - [GIGABYTE](#gigabyte)
@@ -42,7 +43,7 @@ All the settings you need to undervolt will be in the BIOS of your motherboard. 
 Appart from being able to enter the BIOS, you will need some software in Windows to confirm the stability and success of your settings:
 - [HardwareInfo](https://www.hwinfo.com/download/) *HwInfo*
 - [YCruncher](https://www.numberworld.org/y-cruncher)
-- [Bechmate](https://benchmate.org/)
+- [BechMate](https://benchmate.org/)
 
 There are other tools you can use to stablity test as well:
 - [OCCT](https://www.ocbase.com/download)
@@ -53,6 +54,7 @@ There are other tools you can use to stablity test as well:
 
 First of all, update your BIOS to the newest version. Every motherboard brand hast a slighly different way of doing that, so please research this yourself. Usually you do it by going to the website of your motherboard model, navigate to the "support" page, download the BIOS file onto a USB drive, boot into the BIOS and select a "update BIOS tool" to read the BIOS file on the drive and install the update.
 
+### Baseline
 Before changing any settings in the BIOS, let's get a baseline for the performance when everything is stock. For that, start `HwInfo`:
 - at the start you can select "Sensors-only", or when you open the "Full mode", click on "Sensors"
 
@@ -68,17 +70,29 @@ Before changing any settings in the BIOS, let's get a baseline for the performan
 
 - click "Auto fit" so you can quickly read the min and max values
 
-Next step: Start `Benchmate` and start Cinebench (R23 or 2024 are most commonly used to compare)
+Next step: Start `BenchMate` and start Cinebench (R23 or 2024 are most commonly used to compare)
 - start a benchmark run and note down the score you get, as well as the temperature, power consumption and voltage. Do this 3 times for the "Multi Core" test and once for the "Single Core" test
-- If your Cinebench doesn't show the option to only run a single cycle, you can set it by clicking on "File" -> "Advanced Options", then set "Minimum Test Duration" -> "Off"
+- If your Cinebench doesn't show the option to only run a single cycle, you can click on "File" -> "Advanced Options", then set "Minimum Test Duration" -> "Off"
 
   <img width="788" height="522" alt="Cinebench" src="https://github.com/user-attachments/assets/e3355839-042d-4dbd-9397-21328e117ccc" />
 
+- While running the tests, check if you are running into any temperature or power limits. You can see them here:
 
-There are different approaches, the one that results in the lowest average `[VCORE]` is by tuning the `Loadline Calibration` for a small `vdroop` and settings a `negative VID offset`. `vdroop` is the voltage drop that occures when the CPU is under load. So if you have a voltage of 1.45 while you are running with a
+  <img width="676" height="1236" alt="HwInfo_Performance_Limit" src="https://github.com/user-attachments/assets/43264615-5cbe-4a8c-94f4-6462e2d6dbb7" />
 
+- Note this down as well, or take a screenshot of it
 
+### Loadline Calibration tuning
+*If you get confused by this, you can skipt this part and go directly to the motherboard-brand settings. It's not essential.*
 
+Now we are ready to make some BIOS changes. There are different approaches, the one that results in the lowest average `[VCORE]` is by tuning the `Loadline Calibration` for a small `vdroop` and settings a `negative VID offset`. 
+`vdroop` is the voltage drop that occures when the CPU is under load. 
+So if you have a voltage of 1.450 V while you are running a Single Core workload and a voltage of 1.300 V with a Multi Core workload, while the clocks are the same, your `vdroop` would be 0.150 V, or 150 mV. 
+By setting a stronger loadline you lower the voltage difference between light load (single core) and heavy load (multi core). 
+The goal is to get a small droop of anywhere between 20 and 80 mV (0.02 and 0.08). So the single core workload `[VCORE]` should be optimally max. 0.08 V higher than the multi core workload `[VCORE]`, while in both scenarios the cores are clocked the same. 
+If your core clocks are not the same because you hit a power limit or thermal limit, or because the single core boost clock is higher than the multi core boost clock, you can set your p-core ratio to be lower (f.a. to "50") for all cores and test the `vdroop` that way. 
+
+How to set the core ratio is explained in the motherboard-brand settings, the next part:
 
 ### ASUS
 

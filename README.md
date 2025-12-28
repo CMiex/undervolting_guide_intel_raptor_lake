@@ -1,2 +1,4 @@
-# undervolting_guide_intel_raptor_lake
-Intel 12/13/14th gen undervolting guide
+# Intel 12/13/14th gen undervolting guide
+
+# Table of Contents
+- [Table of Contents](#table-of-contents)

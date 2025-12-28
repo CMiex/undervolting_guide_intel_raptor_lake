@@ -83,7 +83,7 @@ Next step: Start `BenchMate` and start Cinebench (R23 or 2024 are most commonly 
 - Note this down as well, or take a screenshot of it
 
 ### Loadline Calibration tuning
-*If you get confused by this, you can skipt this part and go directly to the motherboard-brand settings. It's not essential.*
+*If you get confused by this, you can skipt this part and go directly to [the next part](#asus). It's not essential.*
 
 Now we are ready to make some BIOS changes. There are different approaches, the one that results in the lowest average `[VCORE]` is by tuning the `Loadline Calibration` for a small `vdroop` and settings a `negative VID offset`. 
 `vdroop` is the voltage drop that occures when the CPU is under load. 
@@ -92,7 +92,7 @@ By setting a stronger loadline you lower the voltage difference between light lo
 The goal is to get a small droop of anywhere between 20 and 80 mV (0.02 and 0.08). So the single core workload `[VCORE]` should be optimally max. 0.08 V higher than the multi core workload `[VCORE]`, while in both scenarios the cores are clocked the same. 
 If your core clocks are not the same because you hit a power limit or thermal limit, or because the single core boost clock is higher than the multi core boost clock, you can set your p-core ratio to be lower (f.a. to "50") for all cores and test the `vdroop` that way. 
 
-How to set the core ratio is explained in the motherboard-brand settings, the next part:
+How to set the core ratio is explained in the motherboard-brand settings section of this guide, the next part:
 
 ### ASUS
 

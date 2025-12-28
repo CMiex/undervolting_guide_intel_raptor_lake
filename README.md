@@ -51,9 +51,9 @@ There are other tools you can use to stablity test as well:
 ## General process
 **Make sure to read everything carefully. Don't just click through things in a rush, take your time on each step and in the BIOS if you are doing this for the first time!**
 
-First of all, update your BIOS to the newest version. Every motherboard brand hast a slighly different way of doing that, so please research this yourself. Usually you do it by going to the website of your motherboard model, navigating to the "support" page, downloading the BIOS file onto a USB drive, booting into the BIOS and selecting a "update BIOS tool".
+First of all, update your BIOS to the newest version. Every motherboard brand hast a slighly different way of doing that, so please research this yourself. Usually you do it by going to the website of your motherboard model, navigate to the "support" page, download the BIOS file onto a USB drive, boot into the BIOS and select a "update BIOS tool" to read the BIOS file on the drive and install the update.
 
-Before changing any settings, let's get a baseline for the performance. For that, start `HwInfo`:
+Before changing any settings in the BIOS, let's get a baseline for the performance when everything is stock. For that, start `HwInfo`:
 - at the start you can select "Sensors-only", or when you open the "Full mode", click on "Sensors"
 
   <img width="879" height="360" alt="HwInfo_Full_edit" src="https://github.com/user-attachments/assets/602a4a82-2bbe-4c53-8771-2e7767122a2a" />
@@ -67,6 +67,12 @@ Before changing any settings, let's get a baseline for the performance. For that
   <img width="570" height="535" alt="image" src="https://github.com/user-attachments/assets/b1037de0-e3f8-460a-a265-9b8c145f5713" />
 
 - click "Auto fit" so you can quickly read the min and max values
+
+Next step: Start `Benchmate` and start Cinebench (R23 or 2024 are most commonly used to compare)
+- start a benchmark run and note down the score you get, as well as the temperature, power consumption and voltage. Do this 3 times for the "Multi Core" test and once for the "Single Core" test
+- If your Cinebench doesn't show the option to only run a single cycle, you can set it by clicking on "File" -> "Advanced Options", then set "Minimum Test Duration" -> "Off"
+
+  <img width="788" height="522" alt="Cinebench" src="https://github.com/user-attachments/assets/e3355839-042d-4dbd-9397-21328e117ccc" />
 
 
 There are different approaches, the one that results in the lowest average `[VCORE]` is by tuning the `Loadline Calibration` for a small `vdroop` and settings a `negative VID offset`. `vdroop` is the voltage drop that occures when the CPU is under load. So if you have a voltage of 1.45 while you are running with a

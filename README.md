@@ -4,6 +4,11 @@
 - [Table of Contents](#table-of-contents)
 - [Before you start](#before-you-start)
   - [Basics](#basics)
+  - [Required Software](#required-software)
+- [General Process](#general-process)
+  - [ASUS](#asus)
+  - [MSI](#msi)
+  - [GIGABYTE](#gigabyte)
 
 ## Before you start
 ### Basics
@@ -35,7 +40,7 @@ You want to do this because of multiple reasons:
 All the settings you need to undervolt will be in the BIOS of your motherboard. If you never changed a settings there, don't worry - as long as you work thoroughly and don't start randomly settings different stuff without research, nothing can happen. But be carefull, you can damage your CPU and system if you set a wrong value!
 
 Appart from being able to enter the BIOS, you will need some software in Windows to confirm the stability and success of your settings:
-- [HardwareInfo](https://www.hwinfo.com/download/)
+- [HardwareInfo](https://www.hwinfo.com/download/) *HwInfo*
 - [YCruncher](https://www.numberworld.org/y-cruncher)
 - [Bechmate](https://benchmate.org/)
 
@@ -43,7 +48,36 @@ There are other tools you can use to stablity test as well:
 - [OCCT](https://www.ocbase.com/download)
 - [CoreCycler](https://corecycler.com/)
 
-### General Process
+## General process
+**Make sure to read everything carefully. Don't just click through things in a rush, take your time on each step and in the BIOS if you are doing this for the first time!**
+
 First of all, update your BIOS to the newest version. Every motherboard brand hast a slighly different way of doing that, so please research this yourself. Usually you do it by going to the website of your motherboard model, navigating to the "support" page, downloading the BIOS file onto a USB drive, booting into the BIOS and selecting a "update BIOS tool".
 
-Make sure to read everything carefully. Don't just click through things in a rush, take your time on each step if you are doing it the first time!
+Before changing any settings, let's get a baseline for the performance. For that, start `HwInfo`:
+- at the start you can select "Sensors-only", or when you open the "Full mode", click on "Sensors"
+
+  <img width="879" height="360" alt="HwInfo_Full_edit" src="https://github.com/user-attachments/assets/602a4a82-2bbe-4c53-8771-2e7767122a2a" />
+
+- in `HwInfo` we mainly want to look at the following values: temperature, power consumption and voltage. Click on the little arrow beside "Core Clocks" to show all cores.
+
+  <img width="697" height="1384" alt="HwInfo_Sensors" src="https://github.com/user-attachments/assets/1b8e46da-72d6-4c95-a067-2f5e2e5c9631" />
+
+- to get a better overfew of what's happening, double click the values to open graphs like that:
+
+  <img width="570" height="535" alt="image" src="https://github.com/user-attachments/assets/b1037de0-e3f8-460a-a265-9b8c145f5713" />
+
+- click "Auto fit" so you can quickly read the min and max values
+
+
+There are different approaches, the one that results in the lowest average `[VCORE]` is by tuning the `Loadline Calibration` for a small `vdroop` and settings a `negative VID offset`. `vdroop` is the voltage drop that occures when the CPU is under load. So if you have a voltage of 1.45 while you are running with a
+
+
+
+
+### ASUS
+
+### MSI
+
+### GIGABYTE
+
+

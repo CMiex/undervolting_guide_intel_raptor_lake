@@ -52,7 +52,7 @@ There are other tools you can use to stablity test as well:
 ## General process
 **Make sure to read everything carefully. Don't just click through things in a rush, take your time on each step and in the BIOS if you are doing this for the first time!**
 
-First of all, update your BIOS to the newest version. Every motherboard brand hast a slighly different way of doing that, so please research this yourself. Usually you do it by going to the website of your motherboard model, navigate to the "support" page, download the BIOS file onto a USB drive, boot into the BIOS and select a "update BIOS tool" to read the BIOS file on the drive and install the update.
+First of all, update your BIOS to the newest version. Every motherboard brand has a slighly different way of doing this, so please research this yourself. Usually you do it by going to the website of your motherboard model, navigate to the "support" page, download the BIOS file onto a USB drive, boot into the BIOS and select a "update BIOS tool" to read the BIOS file on the drive and install the update.
 
 ### Baseline
 Before changing any settings in the BIOS, let's get a baseline for the performance when everything is stock. For that, start `HwInfo`:

@@ -85,7 +85,7 @@ Next step: Start `BenchMate` and start Cinebench (R23 or 2024 are most commonly 
 - Note this down as well, or take a screenshot of it
 
 ### Loadline Calibration tuning
-*If you get confused by this, you can skipt this part and go directly to [the next part](#asus). It's not essential.*
+*If you get confused by this, you can skipt this part and go directly to [the next part](#asus). It's not essential. You can try to come back later when you read the whole guide and/or did some testing already.*
 
 There are different approaches to undervolting. The one that results in the lowest average `[VCORE]` is by tuning the `Loadline Calibration` for a small `vdroop` and settings a `negative VID offset`. 
 `vdroop` is the voltage drop that occures when the CPU is under load. 

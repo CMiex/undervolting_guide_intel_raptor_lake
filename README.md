@@ -117,12 +117,18 @@ F.a. if your `[VID table]` says 1.300 V for 5.5 GHz, and you apply a negativ off
 BIOS [ASUS]
 Advanced Mode [F7]
 Tweaker
+  ![1 1](https://github.com/user-attachments/assets/b35c8def-ace1-48f7-a0b0-4cae88e6ae7a)
+
 
 \DIGI+VRM
   - CPU Load-line Calibration ............[Level 6]
   - Synch ACDC Loadline with VRM Loadline.[Enabled]
+  ![1 3](https://github.com/user-attachments/assets/2e4e773b-ff09-4ff0-ba66-b1e2d682d432)
+
 \Internal CPU Power Management
   - IA VR Voltage Limit ..................[1400]
+  ![1 5](https://github.com/user-attachments/assets/fcdf7c9b-69a1-442f-983a-926c7207921f)
+
 
 - Global Core SVID Voltage ...............[Adaptive Mode]
   - Offset Mode Sign .....................[-]

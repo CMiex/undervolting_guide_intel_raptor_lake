@@ -39,6 +39,8 @@ You want to do this because of multiple reasons:
 - The silicon of a CPU naturally degrades over time while using it. "Degrade" basically means, the `[Vmin @ x GHz]` will increase over time (that's another reason why chip manufacturers have this pre-programmed safety margin). The higher the voltage, the faster the degredation process! Therefore lowering the delivered voltage `[VCORE]` will increase the lifetime of your CPU. Though this point is usually not important, because usually CPUs lasted for well over 10 years - even with stock settings! It's only important for the Intel Raptor-Lake CPUs (13/14th gen) because of the degradation issues.
   - I will not be going into any detail on the intel degredation problem. The only thing you need to know is: older BIOS versions include microcode that makes the CPU request dangerously high voltages that damage the CPU over time. According to Intel, updating the BIOS to the newest version should be enough to fix this. Many overclockers recommend to take additional measures by manually undervolting your CPU!
 
+
+
 ### Required Software
 All the settings you need to undervolt will be in the BIOS of your motherboard. If you never changed a settings there, don't worry - as long as you work thoroughly and don't start randomly settings different stuff without research, nothing can happen. But be carefull, you can damage your CPU and system if you set a wrong value!
 
@@ -55,6 +57,8 @@ There are other tools you can use to stablity test as well:
 **Make sure to read everything carefully. Don't just click through things in a rush, take your time on each step and in the BIOS if you are doing this for the first time!**
 
 First of all, update your BIOS to the newest version. Every motherboard brand has a slighly different way of doing this, so please research this yourself. Usually you do it by going to the website of your motherboard model, navigate to the "support" page, download the BIOS file onto a USB drive, boot into the BIOS and select a "update BIOS tool" to read the BIOS file on the drive and install the update.
+
+
 
 ### Baseline
 Before changing any settings in the BIOS, let's get a baseline for the performance when everything is stock. For that, start `HwInfo`:
@@ -84,6 +88,8 @@ Next step: Start `BenchMate` and start Cinebench (R23 or 2024 are most commonly 
 
 - Note this down as well, or take a screenshot of it
 
+
+
 ### Loadline Calibration tuning
 *If you get confused by this, you can skipt this part and go directly to [the next part](#asus). It's not essential. You can try to come back later when you read the whole guide and/or did some testing already.*
 
@@ -99,14 +105,53 @@ How to set the `Loadline Calibration` and the `Core Ratio` is explained in the m
 
 Generally: the more cores, the larger the vdroop, so a *stronger* `Loadline Calibration` is needed. The process of setting the `Loadline Calibration` is best done while setting and testing for the optimal `negative VID offset`. The *stronger* the `Loadline Calibration`, the smaller the `vdroop`, therefore the voltage stays higher, therefore a larger `negative VID offset` is possible. 
 
+
+
 ### Negative VID offset
 What is a `negative VID offset`? If we think back to the [basics](#basics), the `[VID]` is the voltage that the CPU requests. So by applying a `negative VID offset` we lower the `[VID]`, and therefore the `[VCORE]` (the actual voltage the CPU gets from the VRMs).
 F.a. if your `[VID table]` says 1.300 V for 5.5 GHz, and you apply a negativ offset of 0.120, the requested `[VID]` will be 1.300 - 0.120 = 1.180 V.
 
+
+
 ### ASUS
+BIOS [ASUS]
+Advanced Mode [F7]
+Tweaker
+
+\DIGI+VRM
+  - CPU Load-line Calibration ............[Level 6]
+  - Synch ACDC Loadline with VRM Loadline.[Enabled]
+\Internal CPU Power Management
+  - IA VR Voltage Limit ..................[1400]
+
+- Global Core SVID Voltage ...............[Adaptive Mode]
+  - Offset Mode Sign .....................[-]
+  - Offset Voltage .......................[0,10 or more ***]
+
 
 ### MSI
+- P-Core Ratio Apply Mode   -> [All Core]
+- P-Core Ratio              -> 57
+- E-Core Ratio Apply Mode   -> [All Core]
+- E-Core Ratio              -> 44
+- Ring Ratio                -> 50
+
+- DigitALL Power -> CPU Loadline Calibration Control -> level 6
+- CPU Lite Load                     -> [Mode 9]
+
+- CPU Core Voltage Mode             -> [Adaptive + Offset Mode]
+- CPU Core Voltage Offset Mode      -> [-] ("negative")
+- CPU Core Voltage Offest           -> 0.100
+
 
 ### GIGABYTE
+- BIOS -> Tweaker ->
+- Advanced Voltage Settings -> CPU/VRM Settings -> CPU Vcore Loadline Calibration -> [High]
+- Advanced Voltage Settings -> CPU/VRM Settings -> Internal VR Control -> IA VR Config Enale -> [Enable]
+- Advanced Voltage Settings -> CPU/VRM Settings -> Internal VR Control -> IA AC Loadline -> [55]
+- Advanced Voltage Settings -> CPU/VRM Settings -> Internal VR Control -> IA AD Loadline -> [55]
 
+- Vcore Voltage Mode -> [Adaptive Vcore]
+- VF OFfset Mode -> [Legacy]
+- Internal CPU Vcore Offset -> [-0.100]
 

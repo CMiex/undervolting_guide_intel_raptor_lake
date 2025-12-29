@@ -5,10 +5,12 @@
 - [Before you start](#before-you-start)
   - [Basics](#basics)
   - [Required Software](#required-software)
-- [General Process](#general-process)
+- [Undervolting Process](#undervolting-process)
   - [Baseline](#baseline)
   - [Loadline Calibration tuning](#loadline-calibration-tuning)
-  - [Negative VID offset](#negative-vid-offset)
+  - [Negative VID Offset](#negative-vid-offset)
+  - [Core Ratios](#core-ratios)
+- [Motherboard specific settings for Z690 and Z790 chipsets](#motherboard-specific-settings-for-Z690-and-Z790-chipsets)
   - [ASUS](#asus)
   - [MSI](#msi)
   - [GIGABYTE](#gigabyte)
@@ -53,7 +55,7 @@ There are other tools you can use to stablity test as well:
 - [OCCT](https://www.ocbase.com/download)
 - [CoreCycler](https://corecycler.com/)
 
-## General process
+## Undervolting Process
 **Make sure to read everything carefully. Don't just click through things in a rush, take your time on each step and in the BIOS if you are doing this for the first time!**
 
 First of all, update your BIOS to the newest version. Every motherboard brand has a slighly different way of doing this, so please research this yourself. Usually you do it by going to the website of your motherboard model, navigate to the "support" page, download the BIOS file onto a USB drive, boot into the BIOS and select a "update BIOS tool" to read the BIOS file on the drive and install the update.
@@ -91,27 +93,32 @@ Next step: Start `BenchMate` and start Cinebench (R23 or 2024 are most commonly 
 
 
 ### Loadline Calibration tuning
-*If you get confused by this, you can skipt this part and go directly to [the next part](#asus). It's not essential. You can try to come back later when you read the whole guide and/or did some testing already.*
+*If you get confused by this, you can skipt this part for now and go directly to [the next part](#negative-vid-offset). It's not essential but very usefull. You can try to come back later when you read the whole guide and/or did some testing already.*
 
-There are different approaches to undervolting. The one that results in the lowest average `[VCORE]` is by tuning the `Loadline Calibration` for a small `vdroop` and settings a `negative VID offset`. 
-`vdroop` is the voltage drop that occures when the CPU is under load. 
-So if you have a voltage of 1.450 V while you are running a Single Core workload and a voltage of 1.300 V with a Multi Core workload, while the clocks are the same, your `vdroop` would be 0.150 V, or 150 mV. 
+There are different approaches to undervolting. The one that results in the lowest average `VCORE` is by tuning the `Loadline Calibration` for a small `vdroop` and settings a `negative VID offset` to get the load `VCORE` as close to `Vmin` as possible.
+`vdroop` is the voltage drop that occures when the CPU is under load. So if you have a voltage of 1.450 V while you are running a Single Core workload and a voltage of 1.300 V with a Multi Core workload, while the clocks are the same, your `vdroop` would be 0.150 V, or 150 mV. 
 By setting a stronger loadline you lower the voltage difference between light load (single core) and heavy load (multi core). 
 
-The goal is to get a small droop of anywhere between 20 and 80 mV (0.02 and 0.08). So the single core workload `[VCORE]` should be optimally max. 0.08 V higher than the multi core workload `[VCORE]`, while in both scenarios the cores are clocked the same. 
+The goal is to get a small droop of anywhere between 20 and 80 mV (0.02 and 0.08). So the single core workload `VCORE` should be optimally max. 0.08 V higher than the multi core workload `[VCORE]`, while in both scenarios the cores are clocked the same. 
 If your core clocks are not the same because you hit a power limit or thermal limit, or because the single core boost clock is higher than the multi core boost clock, you can set your `P-Core Ratio` to be lower (f.a. to 50 or lower) for all cores and test the `vdroop` that way. 
 
-How to set the `Loadline Calibration` and the `Core Ratio` is explained in the motherboard-brand specific settings section of this guide, [the next part](#asus).
+How, where to set the `Loadline Calibration` and the `Core Ratio` is explained in the motherboard-brand specific settings section of this guide, [here](#asus).
 
-Generally: the more cores, the larger the vdroop, so a *stronger* `Loadline Calibration` is needed. The process of setting the `Loadline Calibration` is best done while setting and testing for the optimal `negative VID offset`. The *stronger* the `Loadline Calibration`, the smaller the `vdroop`, therefore the voltage stays higher, therefore a larger `negative VID offset` is possible. 
-
-
-
-### Negative VID offset
-What is a `negative VID offset`? If we think back to the [basics](#basics), the `[VID]` is the voltage that the CPU requests. So by applying a `negative VID offset` we lower the `[VID]`, and therefore the `[VCORE]` (the actual voltage the CPU gets from the VRMs).
-F.a. if your `[VID table]` says 1.300 V for 5.5 GHz, and you apply a negativ offset of 0.120, the requested `[VID]` will be 1.300 - 0.120 = 1.180 V.
+Generally: the more cores, the larger the vdroop, so a *stronger* `Loadline Calibration` is needed. The process of setting the `Loadline Calibration` is best done while setting and testing for the optimal `negative VID offset`. The *stronger* the `Loadline Calibration`, the smaller the `vdroop`, therefore the voltage stays higher, therefore a larger `negative VID offset` is possible.
 
 
+
+### Negative VID Offset
+What is a `negative VID offset`? If we think back to the [basics](#basics), the `VID` is the voltage that the CPU requests. So by applying a `negative VID offset` we lower the `VID`, and therefore the `VCORE` (the actual voltage the CPU gets from the VRMs).
+F.a. if your `VID table` says 1.300 V for 5.5 GHz, and you apply a negativ offset of 0.120, the requested `VID` will be 1.300 - 0.120 = 1.180 V.
+
+
+
+### Core Ratios
+
+
+
+## Motherboard specific settings for Z690 and Z790 chipsets
 
 ### ASUS
 BIOS [ASUS]

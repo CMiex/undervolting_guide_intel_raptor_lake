@@ -115,10 +115,13 @@ Generally: the more cores, the larger the vdroop, so a *stronger* `Loadline Cali
 What is a `negative VID offset`? If we think back to the [basics](#basics), the `VID` is the voltage that the CPU requests. So by applying a `negative VID offset` we lower the `VID`, and therefore the `VCORE` (the actual voltage the CPU gets from the VRMs).
 F.a. if your `VID table` says 1.300 V for 5.5 GHz, and you apply a negativ offset of 0.120, the requested `VID` will be 1.300 - 0.120 = 1.180 V.
 
+But wait, there is more! There are multiple different VIDs. Each core and the Ring (Cache) can request a voltage `VID`, the highest of those requests will be delivered as the `VCORE` from your motherboard VRMs. So in rare cases, where you are able to set a very large negative *core* `VID` offset, you may run into the scenario where you lower the offset but the `VCORE` doesn't change any more. That's because it's held up by the *cache* `VID` - you'll need to set a negative cache VID offset as well!
 
 
-### Core Ratios
+### Core and cache Ratios
+Usually that's only important, if you want to overclock your CPU - but this is an undervolting guide!?
 
+If you own a i9 series CPU, your max single core clocks will be 300 mHz higher on only 2 P-Cores, than the rest of the P-Cores. Why is this a problem: Like we learned in the last paragraph, every Core has a `VID` and the `VCORE` is dictated by the highest `VID`. So 2 cores increase the voltage for the whole chip. So every single core will have waaaaay higher voltage than the `Vmin` needed to run it. So every core appart from the two will consume more power and run hotter. It's very suboptimal. That's why it's recommended to set all P-Cores to have the same max clock speed (sync the P-Cores).
 
 
 ## Motherboard specific settings for Z690 and Z790 chipsets
